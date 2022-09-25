@@ -20,6 +20,8 @@ public class CameraController : MonoBehaviour
     [SerializeField] private float min;
     [SerializeField] private float max;
 
+    private bool camFOVLoin = true;
+
     [HideInInspector]
     public float minVisionEditor;
     private float minVision;
@@ -132,6 +134,18 @@ public class CameraController : MonoBehaviour
         camPOV.SetActive(false);
         firstPerson = false;
         //transform.eulerAngles = positionThirdPerson.eulerAngles;
+    }
+
+    public void FOVLoin()
+    {
+        
+
+    }
+
+    public void FOVProche()
+    {
+        
+
     }
 
     public void FirstPersonView()

@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     [SerializeField] private Rigidbody rb;
     [SerializeField] private Animator anim;
 
+    private CameraController cameraPlayer;
+
     private float speed;
 
     [SerializeField] private float WalkSpeed = 1;
@@ -28,6 +30,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cameraPlayer = this.GetComponent<CameraController>();
         speed = WalkSpeed;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Confined;
@@ -95,6 +98,8 @@ public class Player : MonoBehaviour
 
     public void Walk()
     {
+        cameraPlayer.FOVLoin();
+
         isRunning = false;
         isWalking = true;
         playAnim("Walking");
@@ -109,6 +114,7 @@ public class Player : MonoBehaviour
     }
     public void Run()
     {
+        cameraPlayer.FOVProche();
         isRunning = true;
         isWalking = false;
         playAnim("Running");
@@ -184,12 +190,9 @@ public class Player : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.tag.Equals("Ennemi") && !isDead)
-        {
-            
-        }
+       
     }
 
     private void OnCollisionExit(Collision collision)
