@@ -8,22 +8,28 @@ public class ChangePosition : MonoBehaviour
     [SerializeField] private GameObject cubeReel;
     [SerializeField] private GameObject place;
 
+    [SerializeField] private int lenghtList=1;
     private int[,] liste;
     private int x=0;
     private int z = 0;
     // Start is called before the first frame update
     void Start()
     {
-       liste = new int[3, 3];
+       liste = new int[lenghtList, lenghtList];
        addCube(2, 0);
        addCube(1, 2);
+       addCube(3, 2);
+       addCube(3, 3);
+        addCube(2, 4);
+        addCube(4, 3);
+        addCube(4, 0);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) && z < 2 && liste[x,z+1] != 1)
+        if (Input.GetKeyDown(KeyCode.UpArrow) && z < lenghtList-1 && liste[x,z+1] != 1)
         {
             z++;
             cube.transform.position += Vector3.forward * cube.transform.localScale.x;
@@ -38,7 +44,7 @@ public class ChangePosition : MonoBehaviour
             x--;
             cube.transform.position -= Vector3.right * cube.transform.localScale.x;
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow) &&  x < 2 && liste[x + 1, z] != 1)
+        if (Input.GetKeyDown(KeyCode.RightArrow) &&  x < lenghtList - 1 && liste[x + 1, z] != 1)
         {
             x++;
             cube.transform.position += Vector3.right * cube.transform.localScale.x;
