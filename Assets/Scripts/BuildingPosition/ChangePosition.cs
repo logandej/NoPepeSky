@@ -9,20 +9,18 @@ public class ChangePosition : MonoBehaviour
     [SerializeField] private GameObject place;
 
     [SerializeField] private int lenghtList=1;
-    private int[,] liste;
+    [SerializeField] private List<Vector2> points;
+    [SerializeField] private int[,] liste;
     private int x=0;
     private int z = 0;
     // Start is called before the first frame update
     void Start()
     {
        liste = new int[lenghtList, lenghtList];
-       addCube(2, 0);
-       addCube(1, 2);
-       addCube(3, 2);
-       addCube(3, 3);
-        addCube(2, 4);
-        addCube(4, 3);
-        addCube(4, 0);
+        foreach (Vector2 pts in points)
+        {
+            addCube((int)pts.x, (int)pts.y);
+        }
 
     }
 
