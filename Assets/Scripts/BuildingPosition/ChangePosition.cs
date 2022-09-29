@@ -5,21 +5,31 @@ using UnityEngine;
 public class ChangePosition : MonoBehaviour
 {
     [SerializeField] private GameObject cube;
-    [SerializeField] private GameObject cubeReel;
     [SerializeField] private GameObject place;
+
+    [SerializeField] private GameObject cubeReel;
+    [SerializeField] private GameObject placeReel;
+
+
+    [SerializeField] private Transform TransSimu;
+    [SerializeField] private Transform TransReal; 
 
     [SerializeField] private int lenghtList=1;
     [SerializeField] private List<Vector2> points;
     [SerializeField] private int[,] liste;
-    private int x=0;
+    private int x = 0;
     private int z = 0;
     // Start is called before the first frame update
     void Start()
     {
-       liste = new int[lenghtList, lenghtList];
+        Transform find = FindScale(cubeReel.transform);
+
+        liste = new int[lenghtList, lenghtList];
         foreach (Vector2 pts in points)
         {
-            addCube((int)pts.x, (int)pts.y);
+            addSimu((int)pts.x, (int)pts.y);
+            addReel((int)pts.x, (int)pts.y, find);
+
         }
 
     }
@@ -30,48 +40,64 @@ public class ChangePosition : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow) && z < lenghtList-1 && liste[x,z+1] != 1)
         {
             z++;
-            cube.transform.position += Vector3.forward * cube.transform.localScale.x;
+            place.transform.position += Vector3.forward * place.transform.localScale.x;
         }
         if (Input.GetKeyDown(KeyCode.DownArrow) && z > 0 && liste[x, z - 1] != 1)
         {
             z--;
-            cube.transform.position -= Vector3.forward * cube.transform.localScale.x;
+            place.transform.position -= Vector3.forward * place.transform.localScale.x;
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow) && x > 0 && liste[x -1, z] != 1)
         {
             x--;
-            cube.transform.position -= Vector3.right * cube.transform.localScale.x;
+            place.transform.position -= Vector3.right * place.transform.localScale.x;
         }
         if (Input.GetKeyDown(KeyCode.RightArrow) &&  x < lenghtList - 1 && liste[x + 1, z] != 1)
         {
             x++;
-            cube.transform.position += Vector3.right * cube.transform.localScale.x;
+            place.transform.position += Vector3.right * place.transform.localScale.x;
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
-            Add();
+            ApplyChange();
         }
     }
-    private void addCube(int x, int z)
+    //Ajoute les cube dans le panneau simulé
+    private void addSimu(int x1, int z1)
     {
-        GameObject obj = Instantiate(place, new Vector3(10, 1, 10), Quaternion.identity, transform);
-        obj.transform.localPosition = new Vector3(x, 1, z);
-        liste[x, z] = 1;
+        GameObject obj = Instantiate(cube, new Vector3(10, 1, 10), Quaternion.identity, TransSimu);
+        obj.transform.localPosition = new Vector3(x1, 1, z1);
+        liste[x1, z1] = 1;
     }
 
-    private void Add()
+    //Ajoute les batiments dans le jeu
+    private void addReel(int x1, int z1, Transform find)
     {
-        
-        Transform t = cubeReel.transform;
-        Transform find = t;
-        foreach (Transform tr in t)
+        GameObject obj = Instantiate(cubeReel, new Vector3(10, 1, 10), Quaternion.identity, TransReal);
+
+        obj.transform.localPosition = new Vector3(find.localScale.x * 2 * x1, 1, find.localScale.x * 2 * z1);
+    }
+    //TRouve la taille de l'objet qui contient un element Echelle
+    private Transform FindScale(Transform find)
+    {
+        Transform tofind = find;
+        foreach (Transform tr in find)
         {
             if (tr.name == "Echelle")
             {
-                find = tr.GetComponent<Transform>();
+                tofind = tr.GetComponent<Transform>();
             }
         }
-        print(find.localScale.z + " "+ find.name);
-        cubeReel.transform.localPosition = new Vector3(x * find.localScale.x * 2, 0, z * find.localScale.z * 2);
+        return tofind;
     }
+
+    private void ApplyChange()
+    {
+
+        Transform find = FindScale(cubeReel.transform);
+       
+        print(find.localScale.z + " "+ find.name);
+        placeReel.transform.localPosition = new Vector3(x * find.localScale.x * 2, 0, z * find.localScale.z * 2);
+    }
+
 }
