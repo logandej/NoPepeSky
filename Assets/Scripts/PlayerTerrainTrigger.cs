@@ -19,7 +19,8 @@ public class PlayerTerrainTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        player.Land();
+       
+            player.Land();
     }
 
     private void OnCollisionEnter(Collision collision)

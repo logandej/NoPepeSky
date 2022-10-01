@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class TerrainChecker
 {
+    public static float GetMapPosition(Vector3 playerPos, Terrain t)
+    {
+        Vector3 tPos = t.transform.position;
+        TerrainData tData = t.terrainData;
+        float mapY = (playerPos.y - tPos.y) / tData.size.y * tData.alphamapHeight;
+        Debug.Log(mapY);
+        return mapY;
+    }
     private float[] GetTextureMix(Vector3 playerPos, Terrain t)
     {
         Vector3 tPos = t.transform.position;

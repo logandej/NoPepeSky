@@ -171,7 +171,7 @@ public class MovePlayer : MonoBehaviour
 
         }
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("LoganTerrain");
 
 
     }

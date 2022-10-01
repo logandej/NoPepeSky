@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/MapTests.unity
+- path: Assets/Scenes/LoganTerrain.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

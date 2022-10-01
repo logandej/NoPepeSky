@@ -17,9 +17,12 @@ public class Player : MonoBehaviour
     [SerializeField] private float mainForce = 10;
 
     public bool canJump = true;
+    public bool canMove = true;
     public bool canPlay = true;
     public bool canRotate = true;
     public bool canDoubleJump = false;
+
+    public bool isDoingAction = false;
 
     private bool isWalking = false;
     private bool isRunning = false;
@@ -39,7 +42,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {       
-        Move();
+        if(canMove) Move();
         if (canRotate)
         {
             this.transform.Rotate(0, Input.GetAxisRaw("Mouse X") * 2, 0);
@@ -61,6 +64,7 @@ public class Player : MonoBehaviour
                 else if (canDoubleJump && !isDoubleJumping)
                     DoubleJump();
             }
+            
            
         }
 
@@ -73,25 +77,27 @@ public class Player : MonoBehaviour
             isWalking = false;
             isRunning = false;
         }
-      
 
-        if (move.magnitude > 0.1f && !isJumping)
+        if (!isDoingAction)
         {
-           // MusicManager.Instance.playRun(runClip);
-        }
-        if (y < 0 && !isJumping)
-        {
-            RunBack();
-        }
-        else if (rb.velocity.magnitude > 0.1f && !isJumping)
-        {
-            if (Input.GetKey(KeyCode.LeftShift))
-                Run();
-            else Walk();
-        }
-        else if (!isJumping && x == 0 && y == 0)
-        {
-            playAnim("Standing");
+            if (move.magnitude > 0.1f && !isJumping)
+            {
+                // MusicManager.Instance.playRun(runClip);
+            }
+            if (y < 0 && !isJumping)
+            {
+                RunBack();
+            }
+            else if (rb.velocity.magnitude > 0.1f && !isJumping)
+            {
+                if (Input.GetKey(KeyCode.LeftShift))
+                    Run();
+                else Walk();
+            }
+            else if (!isJumping && x == 0 && y == 0)
+            {
+                playAnim("Standing");
+            }
         }
 
     }
@@ -120,6 +126,7 @@ public class Player : MonoBehaviour
         playAnim("Running");
         speed = RunSpeed;
     }
+   
     public void Jump()
     {
         rb.AddForce(transform.up * jump * mainForce, ForceMode.Impulse);
@@ -148,6 +155,8 @@ public class Player : MonoBehaviour
     public void playAnim(string str)
     {
         anim.SetBool("RunBack", false);
+        anim.SetBool("SwordReturn", false);
+
         anim.SetBool("Standing", false);
         anim.SetBool("Walking", false);
         anim.SetBool("Running", false);
