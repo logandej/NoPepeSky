@@ -59,22 +59,25 @@
     <Compile Include="Assets\Scripts\FootAudio.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Scripts\Intro\Grab.cs" />
+    <Compile Include="Assets\Scripts\Dash.cs" />
     <Compile Include="Assets\Scripts\BuildingPosition\ChangePosition.cs" />
     <Compile Include="Assets\Scripts\FootSteps.cs" />
     <Compile Include="Assets\Import\ComputeGrass\RenderTerrainMap.cs" />
     <Compile Include="Assets\Scripts\TerrainChecker.cs" />
     <Compile Include="Assets\Import\ComputeGrass\ShaderInteractor.cs" />
+    <Compile Include="Assets\Scripts\SpaceShip.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Import\ComputeGrass\GrassComputeScript.cs" />
+    <Compile Include="Assets\Scripts\Ennemy.cs" />
     <Compile Include="Assets\Scripts\Floating.cs" />
+    <Compile Include="Assets\Scripts\Follower.cs" />
+    <Compile Include="Assets\Scripts\SwordReturn.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\Intro\MovePlayer.cs" />
     <Compile Include="Assets\Import\ComputeGrass\GrassPainter.cs" />
-    <Compile Include="Assets\Scripts\Dash.cs" />
-    <Compile Include="Assets\Scripts\Follower.cs" />
-    <Compile Include="Assets\Scripts\SwordReturn.cs" />
-    <Compile Include="Assets\Scripts\SpaceShip.cs" />
+    <Compile Include="Assets\Scripts\TranslateToPoint.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Import\TerrainSampleAssets\ThirdPartyNotices.txt" />
@@ -744,13 +747,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="PathCreatorEditor.csproj">
-      <Project>{2BEE3D68-048B-F334-E73D-844B2AED3B35}</Project>
-      <Name>PathCreatorEditor</Name>
-    </ProjectReference>
     <ProjectReference Include="PathCreator.csproj">
       <Project>{993179CE-B471-BF4E-F432-76098A0DA9BA}</Project>
       <Name>PathCreator</Name>
+    </ProjectReference>
+    <ProjectReference Include="PathCreatorEditor.csproj">
+      <Project>{2BEE3D68-048B-F334-E73D-844B2AED3B35}</Project>
+      <Name>PathCreatorEditor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

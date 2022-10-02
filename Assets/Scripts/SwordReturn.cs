@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SwordReturn : MonoBehaviour
 {
-    public Player player;
+    private Player player;
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameManager.Instance.player;
     }
 
     // Update is called once per frame
@@ -21,10 +21,12 @@ public class SwordReturn : MonoBehaviour
     }
     IEnumerator wait()
     {
+        player.isAttacking = true;
         player.isDoingAction = true;
         player.playAnim("SwordReturn");
         MusicManager.Instance.playEffect("Swoosh");
         yield return new WaitForSeconds(0.9f);
         player.isDoingAction = false;
+        player.isAttacking = false;
     }
 }

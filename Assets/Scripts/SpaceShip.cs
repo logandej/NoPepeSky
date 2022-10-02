@@ -8,7 +8,7 @@ public class SpaceShip : MonoBehaviour
     [SerializeField] private GameObject ship;
     [SerializeField] private GameObject cameraObj;
 
-    public Player player;
+    private Player player;
     public float speed;
 
     private bool controlShip = false;
@@ -16,6 +16,7 @@ public class SpaceShip : MonoBehaviour
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
+        player = GameManager.Instance.player;
     }
 
     // Update is called once per frame

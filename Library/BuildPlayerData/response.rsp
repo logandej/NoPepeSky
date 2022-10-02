@@ -8,6 +8,7 @@
 -a="D:\Informatique\GITHUB\NoPepeSky\Library\PlayerScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll"
 -a="D:\Informatique\GITHUB\NoPepeSky\Library\PlayerScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll"
 -a="D:\Informatique\GITHUB\NoPepeSky\Library\PlayerScriptAssemblies\UnityEngine.UI.dll"
+-a="D:\Informatique\GITHUB\NoPepeSky\Library\PlayerScriptAssemblies\PathCreator.dll"
 -a="D:\Informatique\GITHUB\NoPepeSky\Library\PlayerScriptAssemblies\Unity.Mathematics.dll"
 -a="D:\Informatique\GITHUB\NoPepeSky\Library\PlayerScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll"
 -a="D:\Informatique\GITHUB\NoPepeSky\Library\PlayerScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll"

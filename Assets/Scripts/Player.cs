@@ -23,7 +23,8 @@ public class Player : MonoBehaviour
     public bool canDoubleJump = false;
 
     public bool isDoingAction = false;
-
+    public bool isAttacking = false;
+    
     private bool isWalking = false;
     private bool isRunning = false;
     private bool isDead = false;
